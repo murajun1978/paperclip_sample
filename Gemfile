@@ -34,9 +34,16 @@ end
 
 gem 'paperclip'
 
-group :development do 
+group :development, :test do 
   gem 'pry-rails'
   gem 'pry-debugger'
+
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+end
+
+group :test do 
+  gem 'capybara'
 end
 
 # Use ActiveModel has_secure_password

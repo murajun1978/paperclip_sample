@@ -3,7 +3,9 @@ class User < ActiveRecord::Base
 
   FILE_PATH = "#{Rails.root}/public/404.html"
 
-  def self.file_copy(file_name: nil)
+  def self.file_copy(user_name: nil)
+    return false if user_name.nil?
+
     params ={}
 
     avatar = ActionDispatch::Http::UploadedFile.new(tempfile: File.open(FILE_PATH))
@@ -11,7 +13,7 @@ class User < ActiveRecord::Base
     avatar.original_filename = File.basename(FILE_PATH)
 
     params[:user] = {
-      name: file_name,
+      name: user_name,
       avatar: avatar
     }
   end

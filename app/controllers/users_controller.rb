@@ -62,7 +62,7 @@ class UsersController < ApplicationController
   end
 
   def file_copy
-    @user = User.new(User.file_copy(file_name: 'copy_file'))
+    @user = User.new(User.file_copy(user_name: 'copy_file'))
 
     respond_to do |format|
       if @user.save
