@@ -62,18 +62,7 @@ class UsersController < ApplicationController
   end
 
   def file_copy
-    @path = "#{Rails.root}/public/404.html"
-
-    @avatar = ActionDispatch::Http::UploadedFile.new(tempfile: File.open(@path))
-    @avatar.content_type = MIME::Types.type_for(@path)[0].content_type
-    @avatar.original_filename = File.basename(@path)
-
-    params[:user] = {
-      name: 'file_copy', 
-      avatar: @avatar
-    }
-
-    @user = User.new(user_params)
+    @user = User.new(User.file_copy(file_name: 'copy_file'))
 
     respond_to do |format|
       if @user.save
